@@ -11,6 +11,7 @@ class OrderManagementImpl(
     private val paymentService: PaymentServicePort
 ) : OrderManagementPort {
     override fun createOrder(request: CreateOrderDTO): CreateOrderResultDTO {
-        TODO("Not yet implemented")
+        println("OrderManagementImpl.createOrder")
+        return CreateOrderResultDTO("order-id", "order-status")
     }
 }

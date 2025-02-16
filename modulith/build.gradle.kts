@@ -3,6 +3,7 @@ import com.google.protobuf.gradle.id
 plugins {
     kotlin("jvm") version "1.9.25"
     kotlin("plugin.spring") version "1.9.25"
+    kotlin("kapt") version "1.9.25"
     id("org.springframework.boot") version "3.4.2"
     id("io.spring.dependency-management") version "1.1.7"
     id("com.google.protobuf") version "0.9.4"
@@ -35,13 +36,18 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.springframework.grpc:spring-grpc-spring-boot-starter")
 
+    // Spring Boot validation dependencies
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+    implementation("jakarta.ws.rs:jakarta.ws.rs-api:4.0.0")
+    implementation("jakarta.validation:jakarta.validation-api:3.1.1")
+
     // Spring Modulith dependencies
     implementation("org.springframework.modulith:spring-modulith-starter-core")
     implementation("org.springframework.modulith:spring-modulith-docs")
 
     // MapStruct dependencies
     implementation("org.mapstruct:mapstruct:1.6.3")
-    annotationProcessor("org.mapstruct:mapstruct-processor:1.6.3")
+    kapt("org.mapstruct:mapstruct-processor:1.6.3")
 
     // Development only dependencies
     developmentOnly("org.springframework.boot:spring-boot-devtools")
@@ -92,6 +98,12 @@ protobuf {
                 }
             }
         }
+    }
+}
+
+kapt {
+    arguments {
+        arg("mapstruct.defaultComponentModel", "spring")
     }
 }
 

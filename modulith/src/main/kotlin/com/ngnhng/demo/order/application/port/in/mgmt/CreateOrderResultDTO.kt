@@ -1,5 +1,6 @@
 package com.ngnhng.demo.order.application.port.`in`.mgmt
 
-class CreateOrderResultDTO {
-
-}
+data class CreateOrderResultDTO(
+    val orderId: String,
+    val message: String?
+)
